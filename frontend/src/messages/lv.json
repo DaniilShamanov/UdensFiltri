@@ -1,0 +1,567 @@
+{
+  "nav": {
+    "home": "Sākums",
+    "products": "Produkti",
+    "services": "Pakalpojumi",
+    "contact": "Kontakti",
+    "cart": "Grozs",
+    "account": "Konts",
+    "orders": "Pasūtījumi",
+    "signIn": "Ienākt",
+    "signUp": "Reģistrēties",
+    "signOut": "Iziet",
+    "dismiss": "Aizvērt"
+  },
+  "seo": {
+    "siteName": "UdensFiltri",
+    "defaultTitle": "UdensFiltri — kvalitatīvi santehnikas risinājumi",
+    "defaultDescription": "Santehnikas pakalpojumi, materiāli un aprīkojums. Pasūti tiešsaistē, saņem konsultāciju un ātru piegādi."
+  },
+  "common": {
+    "language": "Valoda",
+    "loading": "Ielādē...",
+    "continue": "Turpināt",
+    "save": "Saglabāt",
+    "cancel": "Atcelt",
+    "error": "Kaut kas nogāja greizi!",
+    "tryAgain": "Mēģināt vēlreiz"
+  },
+  "contact": {
+    "title": "Sazinies ar mums",
+    "description": "Vai jums ir jautājumi? Mēs esam šeit, lai palīdzētu! Sazinieties ar mums, izmantojot jebkuru no zemāk minētajiem kanāliem.",
+    "phone": {
+      "title": "Tālrunis",
+      "hours": "P-Pk 9:00–18:00"
+    },
+    "email": {
+      "title": "E-pasts"
+    },
+    "address": {
+      "title": "Adrese"
+    },
+    "hours": {
+      "title": "Darba laiks",
+      "monFri": "P-Pk:",
+      "monFriTime": "9:00 – 18:00",
+      "saturday": "Sestdiena:",
+      "saturdayTime": "10:00 – 16:00",
+      "sunday": "Svētdiena:",
+      "sundayTime": "Slēgts"
+    }
+  },
+  "forgotPassword": {
+    "title": "Paroles atjaunošana",
+    "description": {
+      "before": "Ievadiet savu e-pastu, lai saņemtu paroles atjaunošanas kodu.",
+      "after": "Ievadiet kodu no e-pasta un iestatiet jaunu paroli."
+    },
+    "emailLabel": "E-pasta adrese",
+    "emailPlaceholder": "you@example.com",
+    "submitButton": "Nosūtīt kodu",
+    "backToSignIn": "Atpakaļ uz pierakstīšanos",
+    "toast": {
+      "codeSuccessTitle": "Atjaunošanas kods nosūtīts",
+      "codeSuccessDescription": "Pārbaudiet savu pastkastīti, lai atrastu verifikācijas kodu.",
+      "codeErrorTitle": "Neizdevās nosūtīt kodu",
+      "codeErrorDescription": "Lūdzu, mēģiniet vēlāk.",
+      "resetSuccessTitle": "Parole nomainīta",
+      "resetSuccessDescription": "Tagad varat pierakstīties ar jauno paroli.",
+      "resetErrorTitle": "Neizdevās nomainīt paroli",
+      "resetErrorDescription": "Lūdzu, pārbaudiet kodu un mēģiniet vēlreiz."
+    },
+    "codeLabel": "Kods",
+    "codePlaceholder": "Ievadiet kodu",
+    "newPasswordLabel": "Jaunā parole",
+    "newPasswordPlaceholder": "Ievadiet jauno paroli",
+    "confirmButton": "Apstiprināt",
+    "confirming": "Apstiprina..."
+  },
+  "home": {
+    "heroTitle": "Tīrs ūdens <highlight>veselīgai dzīvei</highlight>",
+    "heroDescription": "Profesionāli ūdens filtrācijas risinājumi jūsu mājām un uzņēmumam. Ekspertu uzstādīšana un apkopes pakalpojumi Latvijā.",
+    "shopNow": "Iepirkties",
+    "ourServices": "Mūsu pakalpojumi",
+    "freeShipping": "Bezmaksas piegāde",
+    "expertSupport": "Ekspertu atbalsts",
+    "qualityGuaranteed": "Kvalitātes garantija",
+    "heroImageAlt": "Tīrs ūdens",
+    "features": {
+      "quality": {
+        "title": "Kvalitāte garantēta",
+        "description": "Sertificēti produkti"
+      },
+      "shipping": {
+        "title": "Bezmaksas piegāde",
+        "description": "Pasūtījumiem virs €100"
+      },
+      "support": {
+        "title": "Atbalsts 24/7",
+        "description": "Vienmēr gatavi palīdzēt"
+      },
+      "rating": {
+        "title": "Augsti novērtēts",
+        "description": "1000+ atsauksmes"
+      }
+    },
+    "banner": {
+      "title": "Atklājiet mūsu pilno sortimentu",
+      "description": "Vairāk nekā 100+ premium ūdens apstrādes produktu",
+      "button": "Visi produkti"
+    },
+    "categories": {
+      "title": "Iepērcies pa kategorijām",
+      "description": "Atrodiet ideālo ūdens apstrādes risinājumu savām vajadzībām",
+      "subcategoriesCount": "{count} apakškategorijas",
+      "browse": "Pārlūkot"
+    },
+    "featured": {
+      "title": "Ieteicamie produkti",
+      "description": "Augsti novērtētas ūdens filtrācijas sistēmas, ko izvēlējušies mūsu klienti"
+    },
+    "about": {
+      "title": "Kāpēc izvēlēties WaterFilters.lv?",
+      "quality": {
+        "title": "Premium kvalitātes produkti",
+        "description": "Visi mūsu produkti ir sertificēti un pārbaudīti kvalitātes nodrošināšanai."
+      },
+      "installation": {
+        "title": "Ekspertu uzstādīšana",
+        "description": "Profesionāli uzstādīšanas pakalpojumi no sertificētiem tehniķiem."
+      },
+      "support": {
+        "title": "Mūža atbalsts",
+        "description": "Pastāvīga apkope un klientu atbalsts visām mūsu sistēmām."
+      },
+      "imageAlt": "Profesionālie pakalpojumi"
+    }
+  },
+  "orders": {
+    "pageTitle": "Pasūtījumu vēsture",
+    "pageDescription": "Apskatiet un izsekojiet visus savus pasūtījumus",
+    "loading": "Ielādē pasūtījumus...",
+    "stats": {
+      "totalOrders": "Kopā pasūtījumu",
+      "totalSpent": "Kopā iztērēts",
+      "averageOrder": "Vidējais pasūtījums"
+    },
+    "searchPlaceholder": "Meklēt pasūtījumus...",
+    "filter": {
+      "statusPlaceholder": "Filtrēt pēc statusa",
+      "allStatus": "Visi statusi",
+      "pending": "Gaida",
+      "processing": "Apstrādē",
+      "shipped": "Nosūtīts",
+      "delivered": "Piegādāts",
+      "cancelled": "Atcelts"
+    },
+    "sort": {
+      "placeholder": "Kārtot pēc",
+      "newest": "Jaunākie",
+      "oldest": "Vecākie",
+      "highestTotal": "Lielākā summa",
+      "lowestTotal": "Mazākā summa"
+    },
+    "empty": {
+      "title": "Nav atrasts neviens pasūtījums",
+      "noOrdersYet": "Jūs vēl neesat veikuši nevienu pasūtījumu.",
+      "adjustFilters": "Mēģiniet pielāgot filtrus.",
+      "startShopping": "Sākt iepirkšanos"
+    },
+    "orderCard": {
+      "itemsCount": "{count} prece(s)",
+      "orderItems": "Pasūtījuma preces",
+      "quantityLabel": "Daudzums: {quantity} × €{price}",
+      "shippingAddress": "Piegādes adrese",
+      "deliveryMethod": "Piegādes metode"
+    }
+  },
+  "payment": {
+    "title": "Novirzīšana uz drošu norēķinu",
+    "description": "Maksājumi tiek droši apstrādāti caur Stripe. Ja jūs netiekat automātiski novirzīts, noklikšķiniet uz zemāk esošās pogas.",
+    "button": "Doties uz norēķiniem"
+  },
+  "paymentStatus": {
+    "loading": "Ielādē pasūtījumu…",
+    "errors": {
+      "loadFailed": "Nevar ielādēt pasūtījumu"
+    },
+    "orderNotFound": {
+      "title": "Pasūtījums nav atrasts",
+      "description": "Mēs nevarējām ielādēt jūsu pasūtījumu.",
+      "returnHome": "Atgriezties sākumā"
+    },
+    "status": {
+      "paid": "Maksājums veiksmīgs!",
+      "paidDescription": "Paldies par pasūtījumu. Jūsu maksājums ir veiksmīgi apstrādāts.",
+      "failed": "Maksājums neizdevās",
+      "failedDescription": "Jūsu maksājums netika pabeigts. Varat mēģināt vēlreiz norēķināties.",
+      "processing": "Maksājums tiek apstrādāts",
+      "processingDescription": "Mēs apstiprinām jūsu maksājumu. Tas var aizņemt dažas sekundes."
+    },
+    "orderNumber": "Pasūtījuma numurs",
+    "orderDate": "Pasūtījuma datums",
+    "orderTotal": "Pasūtījuma summa",
+    "shippingAddress": "Piegādes adrese",
+    "deliveryMethod": "Piegādes metode",
+    "orderItems": "{count} prece(s)",
+    "quantityLabel": "Daudzums: {quantity}",
+    "tryAgain": "Mēģināt vēlreiz",
+    "returnHome": "Atgriezties sākumā",
+    "continueShopping": "Turpināt iepirkšanos"
+  },
+  "productDetail": {
+    "notFound": {
+      "title": "Prece nav atrasta"
+    },
+    "backToProducts": "Atpakaļ uz precēm",
+    "inStock": "Ir noliktavā",
+    "outOfStock": "Nav noliktavā",
+    "quantityLabel": "Daudzums",
+    "addToCart": "Pievienot grozam",
+    "wholesaleBadge": "Piemērota vairumtirdzniecības cena",
+    "ratingLabel": "{rating} ({count} atsauksme(s))",
+    "loading": "Ielādē preces detaļas...",
+    "toast": {
+      "added": "Pievienotas {count} preces grozam!"
+    },
+    "features": {
+      "freeShipping": {
+        "title": "Bezmaksas piegāde",
+        "description": "Pasūtījumiem virs €100"
+      },
+      "warranty": {
+        "title": "2 gadu garantija",
+        "description": "Pilna ražotāja garantija"
+      },
+      "returns": {
+        "title": "Viegla atgriešana",
+        "description": "30 dienu atgriešanas politika"
+      }
+    },
+    "tabs": {
+      "description": "Apraksts",
+      "specifications": "Specifikācijas",
+      "reviews": "Atsauksmes"
+    },
+    "description": {
+      "title": "Preces apraksts",
+      "featuresTitle": "Galvenās īpašības:",
+      "features": [
+        "Augstas kvalitātes konstrukcija no izturīgiem materiāliem",
+        "Vienkārša uzstādīšana ar komplektā iekļauto montāžas aparatūru",
+        "NSF sertificēts drošībai un kvalitātei",
+        "Samazina hlora, nogulšņu un citu piesārņotāju daudzumu"
+      ]
+    },
+    "specifications": {
+      "title": "Tehniskās specifikācijas",
+      "brand": "Zīmols",
+      "model": "Modelis",
+      "category": "Kategorija",
+      "warranty": "Garantija",
+      "warrantyValue": "2 gadi"
+    },
+    "reviews": {
+      "title": "Klientu atsauksmes",
+      "sampleTitle": "Lieliska prece!",
+      "sampleText": "Šī prece pārsniedza manas cerības. Uzstādīšana bija vienkārša, un ūdens kvalitāte ievērojami uzlabojās.",
+      "customerLabel": "- Klients {number}"
+    },
+    "relatedTitle": "Līdzīgas preces"
+  },
+  "products": {
+    "allProducts": "Visi produkti",
+    "searchPlaceholder": "Meklēt produktus...",
+    "filtersButton": "Filtri",
+    "filtersTitle": "Filtri",
+    "resetFilters": "Atiestatīt filtrus",
+    "showingCount": "Rāda {count} produktu(us)",
+    "noProductsFound": "Nav atrasts neviens produkts pēc jūsu kritērijiem.",
+    "clearAllFilters": "Notīrīt visus filtrus",
+    "breadcrumb": {
+      "home": "Sākums",
+      "products": "Produkti"
+    },
+    "filters": {
+      "priceRange": "Cenu diapazons",
+      "brands": "Zīmoli",
+      "minRating": "Minimālais vērtējums",
+      "availability": "Pieejamība",
+      "inStockOnly": "Tikai noliktavā"
+    },
+    "tooltips": {
+      "priceRange": "Filtrēt produktus pēc cenas",
+      "brands": "Izvēlieties vienu vai vairākus zīmolus",
+      "minRating": "Rādīt produktus ar vērtējumu vismaz",
+      "availability": "Rādīt tikai produktus, kas ir noliktavā"
+    },
+    "ratings": {
+      "all": "Jebkurš vērtējums",
+      "4plus": "4+ zvaigznes",
+      "45plus": "4.5+ zvaigznes"
+    },
+    "sort": {
+      "placeholder": "Kārtot pēc:",
+      "featured": "Ieteicamie",
+      "priceLowHigh": "Cena: zema līdz augsta",
+      "priceHighLow": "Cena: augsta līdz zema",
+      "highestRated": "Augstākais vērtējums",
+      "nameAZ": "Nosaukums: A līdz Z"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Profesionāli santehnikas pakalpojumi",
+      "description": "Ekspertu uzstādīšanas, apkopes un remonta pakalpojumi visām jūsu ūdens apstrādes vajadzībām. Mūsu sertificētie tehniķi nodrošina kvalitatīvu servisu visā Latvijā.",
+      "scheduleButton": "Pieteikt pakalpojumu",
+      "quoteButton": "Saņemt bezmaksas tāmi"
+    },
+    "table": {
+      "title": "Mūsu pakalpojumi un cenas",
+      "searchPlaceholder": "Meklēt pakalpojumus...",
+      "serviceName": "Pakalpojuma nosaukums",
+      "description": "Apraksts",
+      "price": "Cena",
+      "action": "Darbība",
+      "bookButton": "Pieteikties",
+      "empty": "Nav atrasts neviens pakalpojums pēc jūsu meklēšanas kritērijiem."
+    },
+    "info": {
+      "sameDay": {
+        "title": "Apkalpošana tajā pašā dienā",
+        "description": "Ārkārtas remontdarbi ar izbraukumu tajā pašā dienā"
+      },
+      "certified": {
+        "title": "Sertificēti tehniķi",
+        "description": "Visi mūsu tehniķi ir pilnībā licencēti un sertificēti"
+      },
+      "guarantee": {
+        "title": "Apmierinātības garantija",
+        "description": "100% apmierinātības garantija visiem mūsu pakalpojumiem"
+      }
+    }
+  },
+  "signIn": {
+    "title": "Pierakstīties",
+    "description": "Izmantojiet savu e-pasta adresi, lai piekļūtu savam kontam",
+    "emailLabel": "E-pasts",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Parole",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "Aizmirsi paroli?",
+    "signInButton": "Pierakstīties",
+    "signingIn": "Notiek pierakstīšanās...",
+    "noAccount": "Nav konta?",
+    "createAccountLink": "Izveidot",
+    "toast": {
+      "success": "Pierakstīšanās veiksmīga",
+      "error": "Pierakstīšanās neizdevās",
+      "errorDescription": "Lūdzu, mēģiniet vēlreiz."
+    }
+  },
+  "signUp": {
+    "title": "Izveidot kontu",
+    "descriptionForm": "Aizpildiet datus konta izveidei.",
+    "firstNameLabel": "Vārds",
+    "firstNamePlaceholder": "Jānis",
+    "lastNameLabel": "Uzvārds",
+    "lastNamePlaceholder": "Bērziņš",
+    "phoneLabel": "Tālruņa numurs (neobligāti)",
+    "phonePlaceholder": "+37112345678",
+    "phoneHint": "Izmantojiet starptautisko formātu (piemēram +371...).",
+    "emailLabel": "E-pasts",
+    "emailPlaceholder": "you@example.com",
+    "emailHint": "Ja norādīsiet, mēs uz e-pastu sūtīsim maksājumu apstiprinājumus.",
+    "passwordLabel": "Parole",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Apstipriniet paroli",
+    "confirmPasswordPlaceholder": "••••••••",
+    "agreeToTerms": "Piekrītu <termsLink>Lietošanas noteikumiem</termsLink>",
+    "alreadyHaveAccount": "Jau ir konts?",
+    "signInLink": "Pierakstīties",
+    "toast": {
+      "passwordsMismatch": "Paroles nesakrīt",
+      "termsNotAgreed": "Lūdzu, piekrītiet lietošanas noteikumiem",
+      "tryAgain": "Lūdzu, mēģiniet vēlreiz.",
+      "accountCreated": "Konts veiksmīgi izveidots!",
+      "signUpFailed": "Reģistrācija neizdevās",
+      "passwordTooShort": "Parole ir pārāk īsa: ievadījāt {current} simbolus, minimums ir {min}.",
+      "verificationCodeSent": "Verifikācijas kods nosūtīts uz jūsu e-pastu",
+      "verifyEmailFirst": "Lūdzu, verificējiet e-pastu",
+      "verificationCodeRequired": "Lūdzu, ievadiet verifikācijas kodu",
+      "emailRequiredForVerification": "Verifikācijai nepieciešams e-pasts"
+    },
+    "createAccountButton": "Izveidot kontu",
+    "verificationBanner": "Verifikācijas kods ir nosūtīts uz jūsu e-pastu.",
+    "verificationCodeLabel": "Verifikācijas kods",
+    "verificationCodePlaceholder": "Ievadiet kodu no e-pasta",
+    "confirmCodeButton": "Apstiprināt kodu",
+    "verifyButton": "Verificēt",
+    "resendButton": "Nosūtīt vēlreiz"
+  },
+  "account": {
+    "title": "Konta iestatījumi",
+    "signedInAs": "Pierakstījies kā {name}",
+    "tabs": {
+      "profile": "Profils",
+      "security": "Drošība"
+    },
+    "profile": {
+      "title": "Personiskā informācija",
+      "description": "Atjauniniet personīgo un kontaktinformāciju.",
+      "firstName": "Vārds",
+      "lastName": "Uzvārds",
+      "saveName": "Saglabāt vārdu",
+      "phone": "Tālruņa numurs (neobligāti)",
+      "sendCode": "Nosūtīt kodu",
+      "newPhone": "Jauns tālrunis",
+      "phonePlaceholder": "+37112345678",
+      "smsCode": "SMS kods",
+      "updatePhone": "Atjaunināt tālruni",
+      "phoneHelp": "Kods nosūtīts uz jūsu esošo tālruņa numuru.",
+      "email": "E-pasts",
+      "notSet": "Nav norādīts",
+      "emailPlaceholder": "you@example.com",
+      "updateEmail": "Atjaunināt e-pastu",
+      "emailHelp": "Ja e-pasts nav norādīts, čeki tiks glabāti tikai jūsu kontā.",
+      "emailCode": "Verifikācijas kods",
+      "codePlaceholder": "Ievadiet kodu no e-pasta",
+      "confirmCode": "Apstiprināt kodu",
+      "codeBanner": "Verifikācijas kods ir nosūtīts uz jūsu e-pastu."
+    },
+    "security": {
+      "title": "Parole",
+      "description": "Paroli varat mainīt jebkurā laikā.",
+      "sendCode": "Nosūtīt kodu",
+      "newPassword": "Jauna parole",
+      "smsCode": "SMS kods",
+      "updatePassword": "Atjaunināt paroli",
+      "emailCode": "Verifikācijas kods",
+      "codePlaceholder": "Ievadiet kodu no e-pasta",
+      "confirmCode": "Apstiprināt kodu",
+      "codeBanner": "Verifikācijas kods ir nosūtīts uz jūsu e-pastu.",
+      "confirmNewPassword": "Apstipriniet jauno paroli",
+      "passwordsMismatch": "Paroles nesakrīt"
+    },
+    "toast": {
+      "codeSent": "Kods nosūtīts",
+      "codeSentDescription": "Kods nosūtīts uz {phone}",
+      "codeFailed": "Neizdevās nosūtīt kodu",
+      "profileUpdated": "Profils atjaunināts",
+      "profileEqualsPrevious": "Jaunie vārds un uzvārds ir vienādi ar pašreizējiem",
+      "profileUpdateFailed": "Neizdevās atjaunināt profilu",
+      "emailUpdated": "E-pasts atjaunināts",
+      "emailUpdateFailed": "Neizdevās atjaunināt e-pastu",
+      "emailEqualsPrevious": "Jaunais e-pasts ir vienāds ar pašreizējo",
+      "phoneUpdated": "Tālrunis atjaunināts",
+      "phoneEqualsPrevious": "Jaunais tālruņa numurs ir vienāds ar pašreizējo",
+      "phoneUpdateFailed": "Neizdevās atjaunināt tālruni",
+      "passwordUpdated": "Parole atjaunināta",
+      "passwordUpdateFailed": "Neizdevās atjaunināt paroli",
+      "signInAgain": "Lūdzu, pierakstieties vēlreiz.",
+      "checkCode": "Pārbaudiet kodu un mēģiniet vēlreiz.",
+      "checkPhoneFormat": "Pārbaudiet kodu un tālruņa formātu (+371...).",
+      "verificationCodeSent": "Verifikācijas kods nosūtīts uz jūsu e-pastu",
+      "passwordTooShort": "Parole ir pārāk īsa: ievadījāt {current} simbolus, minimums ir {min}.",
+      "emailRequired": "E-pasts ir obligāts",
+      "passwordsMismatch": "Paroles nesakrīt"
+    }
+  },
+  "cart": {
+    "title": "Iepirkumu grozs",
+    "empty": {
+      "title": "Grozs ir tukšs",
+      "description": "Pievienojiet preces, lai sāktu!",
+      "browseButton": "Pārlūkot preces"
+    },
+    "item": {
+      "eachPrice": "€{price} gab."
+    },
+    "summary": {
+      "title": "Pasūtījuma kopsavilkums",
+      "subtotal": "Starpsumma: {count} prece(s)",
+      "shipping": "Piegāde",
+      "free": "BEZMAKSAS",
+      "freeShippingMessage": "Pievienojiet vēl €{amount}, lai saņemtu bezmaksas piegādi!",
+      "total": "Kopā",
+      "checkoutButton": "Doties uz norēķiniem",
+      "continueShopping": "Turpināt iepirkšanos"
+    }
+  },
+  "checkout": {
+    "secureCheckout": "Drošs norēķins",
+    "title": "Norēķināšanās",
+    "contact": {
+      "title": "Kontaktinformācija",
+      "email": "E-pasta adrese",
+      "emailPlaceholder": "jūsu.epasts@example.com",
+      "firstName": "Vārds",
+      "lastName": "Uzvārds",
+      "phone": "Tālruņa numurs",
+      "phonePlaceholder": "+371 12345678"
+    },
+    "address": {
+      "title": "Piegādes adrese",
+      "street": "Ielas nosaukums, mājas nr., dz. nr.",
+      "streetPlaceholder": "Brīvības iela 123, dz. 4B",
+      "city": "Pilsēta",
+      "postalCode": "Pasta indekss",
+      "postalCodePlaceholder": "LV-1234",
+      "country": "Valsts",
+      "notes": "Piegādes piezīmes (neobligāti)",
+      "notesPlaceholder": "Īpaši norādījumi piegādei..."
+    },
+    "summary": {
+      "title": "Kopsavilkums",
+      "itemLine": "€{price} × {quantity}",
+      "subtotal": "Starpsumma",
+      "shipping": "Piegāde",
+      "free": "BEZMAKSAS",
+      "total": "Kopā",
+      "payButton": "Apmaksāt droši ar Stripe",
+      "redirecting": "Novirza uz Stripe…"
+    },
+    "termsNote": "Veicot pasūtījumu, jūs piekrītat mūsu Lietošanas noteikumiem",
+    "paymentInitFailed": "Maksājuma inicializācija neizdevās"
+  },
+  "footer": {
+    "brand": "WaterFilters",
+    "description": "Mūsdienīgi santehnikas un ūdens filtrācijas risinājumi. Izstrādāts, prioritizējot mobilās ierīces, un gatavs integrācijai ar Django.",
+    "company": "Uzņēmums",
+    "help": "Palīdzība",
+    "legal": "Juridiskā informācija",
+    "faq": "BUJ",
+    "shipping": "Piegāde",
+    "returns": "Atgriešana",
+    "warranty": "Garantija",
+    "privacy": "Privātuma politika",
+    "terms": "Lietošanas noteikumi",
+    "cookies": "Sīkdatņu politika",
+    "copyright": "© {year} WaterFilters",
+    "languages": "LV · RU · EN",
+    "home": "Sākums",
+    "products": "Produkti",
+    "services": "Pakalpojumi",
+    "contact": "Kontakti"
+  },
+  "notification": {
+    "signedOut": "Jūs esat izrakstījies. Lūdzu, pierakstieties vēlreiz, lai piekļūtu savam kontam"
+  },
+  "errors": {
+    "missing_fields": "Lūdzu, aizpildiet visus obligātos laukus.",
+    "invalid_code": "Nederīgs vai beidzies kods.",
+    "locked": "Pārāk daudz mēģinājumu. Lūdzu, mēģiniet vēlāk.",
+    "email_exists": "E-pasts jau reģistrēts.",
+    "too_many_requests": "Lūdzu, uzgaidiet, pirms pieprasāt jaunu kodu.",
+    "missing_refresh_cookie": "Sesija beigusies. Lūdzu, pierakstieties vēlreiz.",
+    "invalid_refresh": "Nederīgs atsvaidzināšanas marķieris.",
+    "missing_email": "E-pasta adrese ir obligāta.",
+    "phone_exists": "Tālruņa numurs jau tiek izmantots.",
+    "user_not_found": "Lietotājs nav atrasts.",
+    "permission_denied": "Jums nav tiesību veikt šo darbību.",
+    "not_found": "Resurss nav atrasts.",
+    "unauthenticated": "Lūdzu, pierakstieties, lai turpinātu.",
+    "validation_error": "Lūdzu, pārbaudiet ievadītos datus un mēģiniet vēlreiz.",
+    "stripe_error": "Maksājumu pakalpojuma kļūda. Lūdzu, mēģiniet vēlāk."
+  }
+}

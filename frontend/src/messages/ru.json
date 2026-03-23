@@ -1,0 +1,567 @@
+{
+  "nav": {
+    "home": "Главная",
+    "products": "Товары",
+    "services": "Услуги",
+    "contact": "Контакты",
+    "cart": "Корзина",
+    "account": "Аккаунт",
+    "orders": "Заказы",
+    "signIn": "Войти",
+    "signUp": "Регистрация",
+    "signOut": "Выйти",
+    "dismiss": "Закрыть"
+  },
+  "seo": {
+    "siteName": "Plumbing",
+    "defaultTitle": "Plumbing — надёжные сантехнические решения",
+    "defaultDescription": "Сантехнические услуги, материалы и оборудование. Заказывайте онлайн, получайте консультацию и быструю доставку."
+  },
+  "common": {
+    "language": "Язык",
+    "loading": "Загрузка...",
+    "continue": "Продолжить",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "error": "Что-то пошло не так!",
+    "tryAgain": "Попробовать снова"
+  },
+  "contact": {
+    "title": "Свяжитесь с нами",
+    "description": "Есть вопросы? Мы здесь, чтобы помочь! Свяжитесь с нами через любой из каналов ниже.",
+    "phone": {
+      "title": "Телефон",
+      "hours": "Пн-Пт 9:00–18:00"
+    },
+    "email": {
+      "title": "Электронная почта"
+    },
+    "address": {
+      "title": "Адрес"
+    },
+    "hours": {
+      "title": "Часы работы",
+      "monFri": "Пн-Пт:",
+      "monFriTime": "9:00 – 18:00",
+      "saturday": "Суббота:",
+      "saturdayTime": "10:00 – 16:00",
+      "sunday": "Воскресенье:",
+      "sundayTime": "Закрыто"
+    }
+  },
+  "forgotPassword": {
+    "title": "Сброс пароля",
+    "description": {
+      "before": "Введите email, чтобы получить код для сброса пароля.",
+      "after": "Введите код из письма и задайте новый пароль."
+    },
+    "emailLabel": "Электронная почта",
+    "emailPlaceholder": "you@example.com",
+    "submitButton": "Отправить код",
+    "backToSignIn": "Вернуться ко входу",
+    "toast": {
+      "codeSuccessTitle": "Код отправлен",
+      "codeSuccessDescription": "Проверьте почту и введите код подтверждения.",
+      "codeErrorTitle": "Не удалось отправить код",
+      "codeErrorDescription": "Пожалуйста, попробуйте позже.",
+      "resetSuccessTitle": "Пароль изменен",
+      "resetSuccessDescription": "Теперь вы можете войти с новым паролем.",
+      "resetErrorTitle": "Не удалось изменить пароль",
+      "resetErrorDescription": "Проверьте код и попробуйте снова."
+    },
+    "codeLabel": "Код",
+    "codePlaceholder": "Введите код",
+    "newPasswordLabel": "Новый пароль",
+    "newPasswordPlaceholder": "Введите новый пароль",
+    "confirmButton": "Подтвердить",
+    "confirming": "Подтверждение..."
+  },
+  "home": {
+    "heroTitle": "Чистая вода для <highlight>здоровой жизни</highlight>",
+    "heroDescription": "Профессиональные решения для фильтрации воды для вашего дома и бизнеса. Услуги по установке и обслуживанию в Латвии.",
+    "shopNow": "Купить",
+    "ourServices": "Наши услуги",
+    "freeShipping": "Бесплатная доставка",
+    "expertSupport": "Экспертная поддержка",
+    "qualityGuaranteed": "Гарантия качества",
+    "heroImageAlt": "Чистая вода",
+    "features": {
+      "quality": {
+        "title": "Качество гарантировано",
+        "description": "Сертифицированная продукция"
+      },
+      "shipping": {
+        "title": "Бесплатная доставка",
+        "description": "Заказы от €100"
+      },
+      "support": {
+        "title": "Поддержка 24/7",
+        "description": "Всегда готовы помочь"
+      },
+      "rating": {
+        "title": "Высокий рейтинг",
+        "description": "1000+ отзывов"
+      }
+    },
+    "banner": {
+      "title": "Откройте весь ассортимент",
+      "description": "Более 100 премиальных систем водоочистки",
+      "button": "Все товары"
+    },
+    "categories": {
+      "title": "Категории товаров",
+      "description": "Найдите идеальное решение для очистки воды",
+      "subcategoriesCount": "{count} подкатегорий",
+      "browse": "Просмотр"
+    },
+    "featured": {
+      "title": "Рекомендуемые товары",
+      "description": "Лучшие системы фильтрации, выбранные нашими клиентами"
+    },
+    "about": {
+      "title": "Почему WaterFilters.lv?",
+      "quality": {
+        "title": "Премиальное качество",
+        "description": "Вся продукция сертифицирована и проверена."
+      },
+      "installation": {
+        "title": "Профессиональный монтаж",
+        "description": "Услуги установки сертифицированными специалистами."
+      },
+      "support": {
+        "title": "Пожизненная поддержка",
+        "description": "Обслуживание и поддержка всех наших систем."
+      },
+      "imageAlt": "Профессиональные услуги"
+    }
+  },
+  "orders": {
+    "pageTitle": "История заказов",
+    "pageDescription": "Просматривайте и отслеживайте все ваши заказы",
+    "loading": "Загрузка заказов...",
+    "stats": {
+      "totalOrders": "Всего заказов",
+      "totalSpent": "Всего потрачено",
+      "averageOrder": "Средний заказ"
+    },
+    "searchPlaceholder": "Поиск заказов...",
+    "filter": {
+      "statusPlaceholder": "Фильтр по статусу",
+      "allStatus": "Все статусы",
+      "pending": "Ожидает",
+      "processing": "В обработке",
+      "shipped": "Отправлен",
+      "delivered": "Доставлен",
+      "cancelled": "Отменён"
+    },
+    "sort": {
+      "placeholder": "Сортировка",
+      "newest": "Сначала новые",
+      "oldest": "Сначала старые",
+      "highestTotal": "По сумме (убыв.)",
+      "lowestTotal": "По сумме (возр.)"
+    },
+    "empty": {
+      "title": "Заказы не найдены",
+      "noOrdersYet": "Вы ещё не сделали ни одного заказа.",
+      "adjustFilters": "Попробуйте изменить фильтры.",
+      "startShopping": "Начать покупки"
+    },
+    "orderCard": {
+      "itemsCount": "{count} товар(ов)",
+      "orderItems": "Товары в заказе",
+      "quantityLabel": "Количество: {quantity} × €{price}",
+      "shippingAddress": "Адрес доставки",
+      "deliveryMethod": "Метод доставки"
+    }
+  },
+  "payment": {
+    "title": "Перенаправление на безопасную оплату",
+    "description": "Платежи обрабатываются безопасно через Stripe. Если вы не перенаправлены автоматически, нажмите кнопку ниже.",
+    "button": "Перейти к оплате"
+  },
+  "paymentStatus": {
+    "loading": "Загрузка заказа…",
+    "errors": {
+      "loadFailed": "Не удалось загрузить заказ"
+    },
+    "orderNotFound": {
+      "title": "Заказ не найден",
+      "description": "Не удалось загрузить ваш заказ.",
+      "returnHome": "Вернуться на главную"
+    },
+    "status": {
+      "paid": "Оплата прошла успешно!",
+      "paidDescription": "Спасибо за ваш заказ. Оплата успешно обработана.",
+      "failed": "Оплата не удалась",
+      "failedDescription": "Платёж не был завершён. Вы можете повторить попытку из корзины.",
+      "processing": "Оплата обрабатывается",
+      "processingDescription": "Мы подтверждаем ваш платёж. Это может занять несколько секунд."
+    },
+    "orderNumber": "Номер заказа",
+    "orderDate": "Дата заказа",
+    "orderTotal": "Сумма заказа",
+    "shippingAddress": "Адрес доставки",
+    "deliveryMethod": "Метод доставки",
+    "orderItems": "{count} товар(ов)",
+    "quantityLabel": "Количество: {quantity}",
+    "tryAgain": "Попробовать снова",
+    "returnHome": "Вернуться на главную",
+    "continueShopping": "Продолжить покупки"
+  },
+  "productDetail": {
+    "notFound": {
+      "title": "Товар не найден"
+    },
+    "backToProducts": "Вернуться к товарам",
+    "inStock": "В наличии",
+    "outOfStock": "Нет в наличии",
+    "quantityLabel": "Количество",
+    "addToCart": "Добавить в корзину",
+    "wholesaleBadge": "Оптовая цена применена",
+    "ratingLabel": "{rating} ({count} отзыв(ов))",
+    "loading": "Загрузка деталей товара...",
+    "toast": {
+      "added": "Добавлено {count} шт. в корзину!"
+    },
+    "features": {
+      "freeShipping": {
+        "title": "Бесплатная доставка",
+        "description": "При заказе от €100"
+      },
+      "warranty": {
+        "title": "Гарантия 2 года",
+        "description": "Полная заводская гарантия"
+      },
+      "returns": {
+        "title": "Лёгкий возврат",
+        "description": "Возврат в течение 30 дней"
+      }
+    },
+    "tabs": {
+      "description": "Описание",
+      "specifications": "Характеристики",
+      "reviews": "Отзывы"
+    },
+    "description": {
+      "title": "Описание товара",
+      "featuresTitle": "Основные особенности:",
+      "features": [
+        "Высококачественная конструкция из прочных материалов",
+        "Простая установка с комплектующим крепежом",
+        "Сертифицировано NSF по безопасности и качеству",
+        "Уменьшает содержание хлора, осадка и других загрязнителей"
+      ]
+    },
+    "specifications": {
+      "title": "Технические характеристики",
+      "brand": "Бренд",
+      "model": "Модель",
+      "category": "Категория",
+      "warranty": "Гарантия",
+      "warrantyValue": "2 года"
+    },
+    "reviews": {
+      "title": "Отзывы покупателей",
+      "sampleTitle": "Отличный товар!",
+      "sampleText": "Этот товар превзошёл мои ожидания. Установка была лёгкой, качество воды значительно улучшилось.",
+      "customerLabel": "- Покупатель {number}"
+    },
+    "relatedTitle": "Похожие товары"
+  },
+  "products": {
+    "allProducts": "Все товары",
+    "searchPlaceholder": "Поиск товаров...",
+    "filtersButton": "Фильтры",
+    "filtersTitle": "Фильтры",
+    "resetFilters": "Сбросить фильтры",
+    "showingCount": "Показан(о) {count} товар(ов)",
+    "noProductsFound": "Товары по вашему запросу не найдены.",
+    "clearAllFilters": "Очистить все фильтры",
+    "breadcrumb": {
+      "home": "Главная",
+      "products": "Товары"
+    },
+    "filters": {
+      "priceRange": "Диапазон цен",
+      "brands": "Бренды",
+      "minRating": "Минимальный рейтинг",
+      "availability": "Наличие",
+      "inStockOnly": "Только в наличии"
+    },
+    "tooltips": {
+      "priceRange": "Фильтровать товары по цене",
+      "brands": "Выберите один или несколько брендов",
+      "minRating": "Показывать товары с рейтингом не ниже",
+      "availability": "Показывать только товары в наличии"
+    },
+    "ratings": {
+      "all": "Любой рейтинг",
+      "4plus": "4+ звезды",
+      "45plus": "4.5+ звезды"
+    },
+    "sort": {
+      "placeholder": "Сортировать по:",
+      "featured": "Рекомендуемые",
+      "priceLowHigh": "Сначала дешёвые",
+      "priceHighLow": "Сначала дорогие",
+      "highestRated": "По рейтингу",
+      "nameAZ": "По названию"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Профессиональные сантехнические услуги",
+      "description": "Экспертные услуги по установке, обслуживанию и ремонту для всех ваших систем водоочистки. Наши сертифицированные специалисты предоставляют качественный сервис по всей Латвии.",
+      "scheduleButton": "Записаться на сервис",
+      "quoteButton": "Получить бесплатную смету"
+    },
+    "table": {
+      "title": "Наши услуги и цены",
+      "searchPlaceholder": "Поиск услуг...",
+      "serviceName": "Название услуги",
+      "description": "Описание",
+      "price": "Цена",
+      "action": "Действие",
+      "bookButton": "Записаться",
+      "empty": "Услуги по вашему запросу не найдены."
+    },
+    "info": {
+      "sameDay": {
+        "title": "Обслуживание в день обращения",
+        "description": "Экстренный ремонт с выездом в день обращения"
+      },
+      "certified": {
+        "title": "Сертифицированные специалисты",
+        "description": "Все наши специалисты имеют лицензии и сертификаты"
+      },
+      "guarantee": {
+        "title": "Гарантия качества",
+        "description": "100% гарантия удовлетворения на все наши услуги"
+      }
+    }
+  },
+  "signIn": {
+    "title": "Вход",
+    "description": "Используйте свою электронную почту для входа в аккаунт",
+    "emailLabel": "Электронная почта",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "••••••••",
+    "forgotPasswordLink": "Забыли пароль?",
+    "signInButton": "Войти",
+    "signingIn": "Вход...",
+    "noAccount": "Нет аккаунта?",
+    "createAccountLink": "Создать",
+    "toast": {
+      "success": "Вы вошли",
+      "error": "Ошибка входа",
+      "errorDescription": "Пожалуйста, попробуйте снова."
+    }
+  },
+  "signUp": {
+    "title": "Создать аккаунт",
+    "descriptionForm": "Заполните данные для создания аккаунта.",
+    "firstNameLabel": "Имя",
+    "firstNamePlaceholder": "Иван",
+    "lastNameLabel": "Фамилия",
+    "lastNamePlaceholder": "Иванов",
+    "phoneLabel": "Номер телефона (необязательно)",
+    "phonePlaceholder": "+37112345678",
+    "phoneHint": "Используйте международный формат (например +371...).",
+    "emailLabel": "Электронная почта",
+    "emailPlaceholder": "you@example.com",
+    "emailHint": "Если укажете, мы будем присылать подтверждения оплаты на почту.",
+    "passwordLabel": "Пароль",
+    "passwordPlaceholder": "••••••••",
+    "confirmPasswordLabel": "Подтвердите пароль",
+    "confirmPasswordPlaceholder": "••••••••",
+    "agreeToTerms": "Я согласен с <termsLink>Условиями использования</termsLink>",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "signInLink": "Войти",
+    "toast": {
+      "passwordsMismatch": "Пароли не совпадают",
+      "termsNotAgreed": "Пожалуйста, примите условия использования",
+      "tryAgain": "Пожалуйста, попробуйте снова.",
+      "accountCreated": "Аккаунт успешно создан!",
+      "signUpFailed": "Ошибка регистрации",
+      "passwordTooShort": "Пароль слишком короткий: вы ввели {current} символа(ов), минимум — {min}.",
+      "verificationCodeSent": "Код подтверждения отправлен на вашу почту",
+      "verifyEmailFirst": "Пожалуйста, подтвердите email",
+      "verificationCodeRequired": "Пожалуйста, введите код подтверждения",
+      "emailRequiredForVerification": "Для отправки кода необходим email"
+    },
+    "createAccountButton": "Создать аккаунт",
+    "verificationBanner": "Код подтверждения отправлен на вашу электронную почту.",
+    "verificationCodeLabel": "Код подтверждения",
+    "verificationCodePlaceholder": "Введите код из письма",
+    "confirmCodeButton": "Подтвердить код",
+    "verifyButton": "Подтвердить",
+    "resendButton": "Отправить снова"
+  },
+  "account": {
+    "title": "Настройки аккаунта",
+    "signedInAs": "Вы вошли как {name}",
+    "tabs": {
+      "profile": "Профиль",
+      "security": "Безопасность"
+    },
+    "profile": {
+      "title": "Личная информация",
+      "description": "Обновляйте личные и контактные данные.",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "saveName": "Сохранить имя",
+      "phone": "Номер телефона (необязательно)",
+      "sendCode": "Отправить код",
+      "newPhone": "Новый телефон",
+      "phonePlaceholder": "+37112345678",
+      "smsCode": "SMS-код",
+      "updatePhone": "Обновить телефон",
+      "phoneHelp": "Код отправлен на ваш текущий номер телефона.",
+      "email": "Электронная почта",
+      "notSet": "Не указан",
+      "emailPlaceholder": "you@example.com",
+      "updateEmail": "Обновить email",
+      "emailHelp": "Если email не указан, квитанции будут храниться только в вашем аккаунте.",
+      "emailCode": "Код подтверждения",
+      "codePlaceholder": "Введите код из письма",
+      "confirmCode": "Подтвердить код",
+      "codeBanner": "Код подтверждения отправлен на вашу электронную почту."
+    },
+    "security": {
+      "title": "Пароль",
+      "description": "Вы можете изменить пароль в любое время.",
+      "sendCode": "Отправить код",
+      "newPassword": "Новый пароль",
+      "smsCode": "SMS-код",
+      "updatePassword": "Обновить пароль",
+      "emailCode": "Код подтверждения",
+      "codePlaceholder": "Введите код из письма",
+      "confirmCode": "Подтвердить код",
+      "codeBanner": "Код подтверждения отправлен на вашу электронную почту.",
+      "confirmNewPassword": "Подтвердите новый пароль",
+      "passwordsMismatch": "Пароли не совпадают"
+    },
+    "toast": {
+      "codeSent": "Код отправлен",
+      "codeSentDescription": "Код отправлен на {phone}",
+      "codeFailed": "Не удалось отправить код",
+      "profileUpdated": "Профиль обновлён",
+      "profileEqualsPrevious": "Новые имя и фамилия совпадают с текущими",
+      "profileUpdateFailed": "Не удалось обновить профиль",
+      "emailUpdated": "Email обновлён",
+      "emailUpdateFailed": "Не удалось обновить email",
+      "emailEqualsPrevious": "Новый email совпадает с текущим",
+      "phoneUpdated": "Телефон обновлён",
+      "phoneEqualsPrevious": "Новый номер телефона совпадает с текущим",
+      "phoneUpdateFailed": "Не удалось обновить телефон",
+      "passwordUpdated": "Пароль обновлён",
+      "passwordUpdateFailed": "Не удалось обновить пароль",
+      "signInAgain": "Пожалуйста, войдите снова.",
+      "checkCode": "Проверьте код и попробуйте снова.",
+      "checkPhoneFormat": "Проверьте код и формат телефона (+371...).",
+      "verificationCodeSent": "Код подтверждения отправлен на вашу почту",
+      "passwordTooShort": "Пароль слишком короткий: вы ввели {current} символа(ов), минимум — {min}.",
+      "emailRequired": "Email обязателен",
+      "passwordsMismatch": "Пароли не совпадают"
+    }
+  },
+  "cart": {
+    "title": "Корзина",
+    "empty": {
+      "title": "Корзина пуста",
+      "description": "Добавьте товары, чтобы начать!",
+      "browseButton": "Перейти к товарам"
+    },
+    "item": {
+      "eachPrice": "€{price} за шт."
+    },
+    "summary": {
+      "title": "Итог заказа",
+      "subtotal": "Всего: {count} товар(ов)",
+      "shipping": "Доставка",
+      "free": "БЕСПЛАТНО",
+      "freeShippingMessage": "Добавьте ещё €{amount} для бесплатной доставки!",
+      "total": "Всего",
+      "checkoutButton": "Оформить заказ",
+      "continueShopping": "Продолжить покупки"
+    }
+  },
+  "checkout": {
+    "secureCheckout": "Безопасная оплата",
+    "title": "Оформление заказа",
+    "contact": {
+      "title": "Контактная информация",
+      "email": "Электронная почта",
+      "emailPlaceholder": "ваш.email@example.com",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "phone": "Номер телефона",
+      "phonePlaceholder": "+371 12345678"
+    },
+    "address": {
+      "title": "Адрес доставки",
+      "street": "Улица, дом, квартира",
+      "streetPlaceholder": "ул. Примерная, д. 123, кв. 4Б",
+      "city": "Город",
+      "postalCode": "Почтовый индекс",
+      "postalCodePlaceholder": "LV-1234",
+      "country": "Страна",
+      "notes": "Примечания к доставке (необязательно)",
+      "notesPlaceholder": "Любые особые указания для курьера..."
+    },
+    "summary": {
+      "title": "Итого",
+      "itemLine": "€{price} × {quantity}",
+      "subtotal": "Товары",
+      "shipping": "Доставка",
+      "free": "БЕСПЛАТНО",
+      "total": "Всего",
+      "payButton": "Оплатить через Stripe",
+      "redirecting": "Перенаправление на Stripe…"
+    },
+    "termsNote": "Оформляя заказ, вы соглашаетесь с нашими Условиями предоставления услуг",
+    "paymentInitFailed": "Не удалось инициализировать платёж"
+  },
+  "footer": {
+    "brand": "WaterFilters",
+    "description": "Современные сантехнические решения и системы фильтрации воды. Разработано с приоритетом мобильных устройств и готово к интеграции с Django.",
+    "company": "Компания",
+    "help": "Помощь",
+    "legal": "Правовая информация",
+    "faq": "ЧаВо",
+    "shipping": "Доставка",
+    "returns": "Возврат",
+    "warranty": "Гарантия",
+    "privacy": "Политика конфиденциальности",
+    "terms": "Условия использования",
+    "cookies": "Политика cookies",
+    "copyright": "© {year} WaterFilters",
+    "languages": "LV · RU · EN",
+    "home": "Главная",
+    "products": "Товары",
+    "services": "Услуги",
+    "contact": "Контакты"
+  },
+  "notification": {
+    "signedOut": "Вы вышли из системы. Пожалуйста, войдите снова, чтобы получить доступ к своему аккаунту"
+  },
+  "errors": {
+    "missing_fields": "Пожалуйста, заполните все обязательные поля.",
+    "invalid_code": "Неверный или просроченный код.",
+    "locked": "Слишком много попыток. Пожалуйста, попробуйте позже.",
+    "email_exists": "Электронная почта уже зарегистрирована.",
+    "too_many_requests": "Пожалуйста, подождите, прежде чем запросить новый код.",
+    "missing_refresh_cookie": "Сессия истекла. Пожалуйста, войдите снова.",
+    "invalid_refresh": "Неверный токен обновления.",
+    "missing_email": "Адрес электронной почты обязателен.",
+    "phone_exists": "Номер телефона уже используется.",
+    "user_not_found": "Пользователь не найден.",
+    "permission_denied": "У вас нет прав для выполнения этого действия.",
+    "not_found": "Ресурс не найден.",
+    "unauthenticated": "Пожалуйста, войдите, чтобы продолжить.",
+    "validation_error": "Пожалуйста, проверьте введённые данные и попробуйте снова.",
+    "stripe_error": "Ошибка платёжного сервиса. Пожалуйста, попробуйте позже."
+  }
+}

@@ -1,0 +1,184 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Whole House Systems",
+      "slug": "whole-house-systems"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Under Sink Filters",
+      "slug": "under-sink-filters"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Countertop Filters",
+      "slug": "countertop-filters"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Replacement Cartridges",
+      "slug": "replacement-cartridges"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "AquaPure Whole House Filter System",
+      "slug": "aquapure-whole-house",
+      "description": "High-quality whole house water filtration system that removes sediment, chlorine, and heavy metals. Ideal for homes up to 4 bedrooms.",
+      "price_cents": 34999,
+      "currency": "EUR",
+      "image_url": "https://source.unsplash.com/800x800/?water+filter+system",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "name": "PureStream Whole House Carbon Filter",
+      "slug": "purestream-whole-house",
+      "description": "Advanced carbon block technology removes chlorine, VOCs, and bad taste. Improves water quality throughout your home.",
+      "price_cents": 42999,
+      "currency": "EUR",
+      "image_url": "https://source.unsplash.com/800x800/?water+filter+whole+house",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "category": 2,
+      "name": "ClearFlow Under Sink Filter",
+      "slug": "clearflow-under-sink",
+      "description": "Compact 3-stage filtration system that fits under any sink. Removes chlorine, lead, and sediment.",
+      "price_cents": 12999,
+      "currency": "EUR",
+      "image_url": "https://source.unsplash.com/800x800/?under+sink+water+filter",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "category": 2,
+      "name": "UltraFiltration UV System",
+      "slug": "ultrafiltration-uv",
+      "description": "Combines ultrafiltration with UV light to eliminate bacteria and viruses. Perfect for well water.",
+      "price_cents": 25999,
+      "currency": "EUR",
+      "image_url": "https://source.unsplash.com/800x800/?uv+water+filter",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "category": 3,
+      "name": "CounterTop Purifier Pro",
+      "slug": "countertop-purifier-pro",
+      "description": "No installation required – simply attach to your faucet. Reduces chlorine, bad taste, and microplastics.",
+      "price_cents": 8999,
+      "currency": "EUR",
+      "image_url": "https://source.unsplash.com/800x800/?countertop+water+filter",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "category": 4,
+      "name": "Standard Carbon Cartridge (Pack of 2)",
+      "slug": "carbon-cartridge-2pk",
+      "description": "Replacement carbon block cartridges compatible with most under-sink systems. Removes chlorine and improves taste.",
+      "price_cents": 3999,
+      "currency": "EUR",
+      "image_url": "https://source.unsplash.com/800x800/?water+filter+cartridge",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.service",
+    "pk": 1,
+    "fields": {
+      "name": "Professional Installation",
+      "slug": "professional-installation",
+      "description": "Expert installation of any water filtration system by certified technicians.",
+      "base_price_cents": 14900,
+      "currency": "EUR",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.service",
+    "pk": 2,
+    "fields": {
+      "name": "Maintenance & Filter Replacement",
+      "slug": "maintenance-replacement",
+      "description": "Regular filter replacement and system check to ensure optimal performance.",
+      "base_price_cents": 7900,
+      "currency": "EUR",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.service",
+    "pk": 3,
+    "fields": {
+      "name": "Water Quality Testing",
+      "slug": "water-quality-testing",
+      "description": "Comprehensive water analysis for contaminants and recommendations.",
+      "base_price_cents": 5900,
+      "currency": "EUR",
+      "is_active": true
+    }
+  },
+  {
+    "model": "orders.deliveryoption",
+    "pk": 1,
+    "fields": {
+      "name": "Courier delivery (1-2 days)",
+      "description": "Delivery to your address.",
+      "price_cents": 999,
+      "is_active": true
+    }
+  },
+  {
+    "model": "orders.deliveryoption",
+    "pk": 2,
+    "fields": {
+      "name": "Parcel locker (2-3 days)",
+      "description": "Pickup from nearest parcel locker.",
+      "price_cents": 499,
+      "is_active": true
+    }
+  },
+  {
+    "model": "orders.deliveryoption",
+    "pk": 3,
+    "fields": {
+      "name": "Store pickup",
+      "description": "Collect your order in person.",
+      "price_cents": 0,
+      "is_active": true
+    }
+  }
+]

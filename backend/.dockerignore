@@ -1,0 +1,16 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+.env
+.env.*
+venv/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+udensfiltribackend/logs/
+udensfiltribackend/staticfiles/

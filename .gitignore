@@ -1,0 +1,112 @@
+# ========== Python / Django ==========
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+*.sqlite3
+*.db
+
+# Django migration files – optionally ignore if you prefer to commit them
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Django static & media
+staticfiles/
+media/
+*/staticfiles/
+*/media/
+
+# Logs
+*.log
+logs/
+
+# ========== Node / Next.js ==========
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Build output
+dist/
+build/
+
+# npm / yarn / pnpm
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+*.log
+
+# ========== Docker ==========
+# Docker volumes (if mounted locally)
+postgres_data/
+loki-data/
+grafana-data/
+*.sql
+
+# Docker compose override files (optional)
+docker-compose.override.yml
+*.env
+
+# ========== OS / Editor ==========
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.sublime-*
+.idea/
+.vscode/
+*.code-workspace
+
+# ========== IDE / Editor configs (you might want to commit some) ==========
+# .vscode/
+# .idea/
+
+# ========== Secrets / Certificates (keep only example) ==========
+*.crt
+*.key
+*.pem
+!nginx/ssl/*.example
+
+# ========== Temporary / test files ==========
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.swp
+
+# ========== Project specific ==========
+# Frontend build output
+frontend/.next/
+frontend/out/
+
+# Backend logs
+backend/logs/
+
+# Compiled Python files
+*.pyc
+
+# Volumes from Docker (if you mounted them locally)
+postgres_data/
+loki-data/
+grafana-data/
+
+# Possibly other generated directories
+*.log
+logs/
+
+# Secrets
+.env
+.env.local
+.env.production
+.env.development

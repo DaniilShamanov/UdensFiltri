@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Tailwind v4 imports */
+@import 'tailwindcss';
+@source '../**/*.{js,ts,jsx,tsx}';
+
+/* Third-party animation styles */
+@import 'tw-animate-css';
+
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}

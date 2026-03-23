@@ -1,0 +1,81 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.pnp.cjs
+.yarn/install-state.gz
+
+# testing
+/coverage
+/.nyc_output
+/coverage.json
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# next.js build outputs
+/.next/
+/out/
+/build/
+/dist/
+
+# production
+next-env.d.ts   # (auto-generated, but may be committed if you want to track changes)
+# allow committing example env file
+!.env.example
+.env
+.env.*
+!.env.*.example
+
+# typescript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# misc
+.DS_Store
+*.pem
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# turbo
+.turbo
+
+# editor directories and files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# yarn v2+ (if using Plug'n'Play)
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*

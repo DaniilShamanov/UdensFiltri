@@ -1,0 +1,245 @@
+from datetime import timedelta
+
+from django.conf import settings
+from django.http import JsonResponse, HttpResponse
+from django.middleware.csrf import get_token
+from django.utils import timezone
+from django.utils.translation import gettext as _
+from django.views.decorators.http import require_GET
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from .auth import clear_auth_cookies, set_auth_cookies
+from .models import EmailCode, User
+from .serializers import (
+    ChangeEmailSerializer,
+    ChangePasswordSerializer,
+    ChangePhoneSerializer,
+    LoginSerializer,
+    ProfileUpdateSerializer,
+    RegisterSerializer,
+    UserSerializer
+)
+from .utils import ( 
+    create_email_code, 
+    send_verification_email,
+    handle_error_response,
+    issue_tokens,
+    verify_and_consume_code
+)
+
+
+@require_GET
+@csrf_exempt
+def health_check(request):
+    return HttpResponse("OK", status=200)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def csrf_cookie(request):
+    return JsonResponse({"csrfToken": get_token(request)})
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def register(request):
+    ser = RegisterSerializer(data=request.data)
+    ser.is_valid(raise_exception=True)
+
+    email = ser.validated_data["email"].lower()
+    code = ser.validated_data["code"]
+
+    ok, error_msg = verify_and_consume_code(email, "register", code)
+    if not ok:
+        return handle_error_response(error_msg, 400, code="invalid_code")
+
+    if User.objects.filter(email__iexact=email).exists():
+        return handle_error_response("Email already registered.", 400, code="email_exists")
+
+    user = User.objects.create_user(
+        password=ser.validated_data["password"],
+        email=email,
+        first_name=ser.validated_data.get("first_name", ""),
+        last_name=ser.validated_data.get("last_name", ""),
+    )
+    user.is_active = True
+    user.save(update_fields=["is_active"])
+
+    access, refresh = issue_tokens(user)
+    resp = Response({"user": UserSerializer(user).data}, status=201)
+    set_auth_cookies(resp, access, refresh)
+    return resp
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def login(request):
+    ser = LoginSerializer(data=request.data)
+    ser.is_valid(raise_exception=True)
+    user = ser.validated_data["user"]
+    access, refresh = issue_tokens(user)
+    resp = Response({"user": UserSerializer(user).data})
+    set_auth_cookies(resp, access, refresh)
+    return resp
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def refresh(request):
+    refresh_cookie = request.COOKIES.get(settings.AUTH_COOKIE_REFRESH_NAME)
+    if not refresh_cookie:
+        return handle_error_response("No refresh cookie.", 401, code="missing_refresh_cookie")
+    try:
+        token = RefreshToken(refresh_cookie)
+        new_access = str(token.access_token)
+        new_refresh = str(token)
+        resp = Response({"ok": True})
+        set_auth_cookies(resp, new_access, new_refresh)
+        return resp
+    except TokenError:
+        return handle_error_response("Invalid refresh token.", 401, code="invalid_refresh")
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def logout(request):
+    resp = Response({"ok": True})
+    clear_auth_cookies(resp)
+    return resp
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def me(request):
+    return Response({"user": UserSerializer(request.user).data})
+
+
+@api_view(["PATCH"])
+@permission_classes([IsAuthenticated])
+def profile(request):
+    ser = ProfileUpdateSerializer(data=request.data)
+    ser.is_valid(raise_exception=True)
+    update_fields = []
+    for field in ["first_name", "last_name"]:
+        if field in ser.validated_data:
+            setattr(request.user, field, ser.validated_data[field])
+            update_fields.append(field)
+    if update_fields:
+        request.user.save(update_fields=update_fields)
+    return Response({"user": UserSerializer(request.user).data})
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def send_code(request):
+    email = request.data.get('email')
+    purpose = request.data.get('purpose')
+    if not email or not purpose:
+        return handle_error_response("Email and purpose are required.", 400, code="missing_fields")
+
+    if purpose == "register" and User.objects.filter(email__iexact=email).exists():
+        return handle_error_response("Email already registered.", 400, code="email_exists")
+
+    try:
+        code_record = create_email_code(email=email, purpose=purpose, ttl_minutes=10)
+    except ValueError:
+        min_interval = getattr(settings, "EMAIL_CODE_MIN_INTERVAL_SECONDS", 60)
+        last_code = EmailCode.objects.filter(email=email, purpose=purpose).order_by("-created_at").first()
+        elapsed = (timezone.now() - last_code.created_at).total_seconds() if last_code else 0
+        wait = max(int(min_interval - elapsed), 1)
+        return handle_error_response(
+            f"Please wait {wait} seconds before requesting a new code.",
+            429,
+            code="too_many_requests"
+        )
+
+    send_verification_email(email, code_record.code, purpose)
+    return Response({"message": "Verification code sent."})
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def change_email(request):
+    ser = ChangeEmailSerializer(data=request.data)
+    ser.is_valid(raise_exception=True)
+
+    current_email = request.user.email
+    if not current_email:
+        return handle_error_response("User email is not set.", 400, code="missing_email")
+
+    ok, error_msg = verify_and_consume_code(current_email, "change_email", ser.validated_data["code"])
+    if not ok:
+        return handle_error_response(error_msg, 400, code="invalid_code")
+
+    new_email = ser.validated_data["new_email"].strip().lower()
+    if User.objects.filter(email__iexact=new_email).exclude(pk=request.user.pk).exists():
+        return handle_error_response("Email already in use.", 400, code="email_exists")
+
+    request.user.email = new_email
+    request.user.save(update_fields=["email"])
+    return Response({"user": UserSerializer(request.user).data})
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def change_password(request):
+    ser = ChangePasswordSerializer(data=request.data)
+    ser.is_valid(raise_exception=True)
+
+    current_email = request.user.email
+    if not current_email:
+        return handle_error_response("User email is not set.", 400, code="missing_email")
+
+    ok, error_msg = verify_and_consume_code(current_email, "change_password", ser.validated_data["code"])
+    if not ok:
+        return handle_error_response(error_msg, 400, code="invalid_code")
+
+    request.user.set_password(ser.validated_data["new_password"])
+    request.user.save(update_fields=["password"])
+    resp = Response({"ok": True})
+    clear_auth_cookies(resp)
+    return resp
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def reset_password(request):
+    email = request.data.get('email')
+    code = request.data.get('code')
+    new_password = request.data.get('new_password')
+
+    if not email or not code or not new_password:
+        return handle_error_response("email, code and new_password are required", 400, code="missing_fields")
+
+    ok, error_msg = verify_and_consume_code(email, "reset_password", code)
+    if not ok:
+        return handle_error_response(error_msg, 400, code="invalid_code")
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return handle_error_response("User not found", 404, code="user_not_found")
+
+    user.set_password(new_password)
+    user.save(update_fields=["password"])
+    return Response({"message": "Password reset successfully"})
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def change_phone(request):
+    ser = ChangePhoneSerializer(data=request.data)
+    ser.is_valid(raise_exception=True)
+
+    new_phone = ser.validated_data.get("new_phone")
+    if new_phone and User.objects.filter(phone=new_phone).exclude(pk=request.user.pk).exists():
+        return handle_error_response("Phone already in use.", 400, code="phone_exists")
+
+    request.user.phone = new_phone
+    request.user.save(update_fields=["phone"])
+    return Response({"user": UserSerializer(request.user).data})

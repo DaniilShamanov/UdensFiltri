@@ -1,0 +1,23 @@
+@import "../styles/tailwind.css";
+@import "../styles/theme.css";
+@import "../styles/fonts.css";
+
+@layer base {
+  button,
+  [role="button"],
+  a,
+  summary,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  label[for] {
+    cursor: pointer;
+  }
+}
+
+@layer utilities {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
