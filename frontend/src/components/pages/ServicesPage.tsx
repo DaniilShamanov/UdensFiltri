@@ -103,8 +103,8 @@ const ServicesPage: React.FC = () => {
                 <Card key={service.id} className="border-2">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-semibold">{service.name}</h3>
-                      <Badge className="bg-primary">€{service.price.toFixed(2)}</Badge>
+                      <h3 className="font-semibold leading-tight">{service.name}</h3>
+                      <Badge className="bg-primary leading-none self-start">€{service.price.toFixed(2)}</Badge>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{service.description}</p>
                     <Button size="sm" className="w-full bg-accent hover:bg-accent/90" onClick={() => router.push('/contact')}>

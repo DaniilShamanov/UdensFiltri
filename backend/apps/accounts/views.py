@@ -1,4 +1,5 @@
 from datetime import timedelta
+import logging
 
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
@@ -32,10 +33,13 @@ from .utils import (
     verify_and_consume_code
 )
 
+logger = logging.getLogger("udensfiltri.accounts")
+
 
 @require_GET
 @csrf_exempt
 def health_check(request):
+    logger.debug("health_check_called")
     return HttpResponse("OK", status=200)
 
 
@@ -56,9 +60,11 @@ def register(request):
 
     ok, error_msg = verify_and_consume_code(email, "register", code)
     if not ok:
+        logger.warning("register_invalid_code", extra={"email": email})
         return handle_error_response(error_msg, 400, code="invalid_code")
 
     if User.objects.filter(email__iexact=email).exists():
+        logger.warning("register_email_exists", extra={"email": email})
         return handle_error_response("Email already registered.", 400, code="email_exists")
 
     user = User.objects.create_user(
@@ -69,6 +75,7 @@ def register(request):
     )
     user.is_active = True
     user.save(update_fields=["is_active"])
+    logger.info("user_registered", extra={"user_id": user.id, "email": email})
 
     access, refresh = issue_tokens(user)
     resp = Response({"user": UserSerializer(user).data}, status=201)
@@ -82,6 +89,7 @@ def login(request):
     ser = LoginSerializer(data=request.data)
     ser.is_valid(raise_exception=True)
     user = ser.validated_data["user"]
+    logger.info("user_login_success", extra={"user_id": user.id, "email": user.email})
     access, refresh = issue_tokens(user)
     resp = Response({"user": UserSerializer(user).data})
     set_auth_cookies(resp, access, refresh)
@@ -93,6 +101,7 @@ def login(request):
 def refresh(request):
     refresh_cookie = request.COOKIES.get(settings.AUTH_COOKIE_REFRESH_NAME)
     if not refresh_cookie:
+        logger.warning("refresh_missing_cookie")
         return handle_error_response("No refresh cookie.", 401, code="missing_refresh_cookie")
     try:
         token = RefreshToken(refresh_cookie)
@@ -100,8 +109,10 @@ def refresh(request):
         new_refresh = str(token)
         resp = Response({"ok": True})
         set_auth_cookies(resp, new_access, new_refresh)
+        logger.info("token_refresh_success")
         return resp
     except TokenError:
+        logger.warning("token_refresh_invalid")
         return handle_error_response("Invalid refresh token.", 401, code="invalid_refresh")
 
 
@@ -110,6 +121,7 @@ def refresh(request):
 def logout(request):
     resp = Response({"ok": True})
     clear_auth_cookies(resp)
+    logger.info("user_logged_out", extra={"user_id": getattr(request.user, "id", None)})
     return resp
 
 
@@ -131,6 +143,7 @@ def profile(request):
             update_fields.append(field)
     if update_fields:
         request.user.save(update_fields=update_fields)
+        logger.info("profile_updated", extra={"user_id": request.user.id, "updated_fields": ",".join(update_fields)})
     return Response({"user": UserSerializer(request.user).data})
 
 
@@ -140,9 +153,11 @@ def send_code(request):
     email = request.data.get('email')
     purpose = request.data.get('purpose')
     if not email or not purpose:
+        logger.warning("send_code_missing_fields")
         return handle_error_response("Email and purpose are required.", 400, code="missing_fields")
 
     if purpose == "register" and User.objects.filter(email__iexact=email).exists():
+        logger.warning("send_code_email_exists", extra={"email": email, "purpose": purpose})
         return handle_error_response("Email already registered.", 400, code="email_exists")
 
     try:
@@ -152,6 +167,7 @@ def send_code(request):
         last_code = EmailCode.objects.filter(email=email, purpose=purpose).order_by("-created_at").first()
         elapsed = (timezone.now() - last_code.created_at).total_seconds() if last_code else 0
         wait = max(int(min_interval - elapsed), 1)
+        logger.warning("send_code_rate_limited", extra={"email": email, "purpose": purpose, "wait_seconds": wait})
         return handle_error_response(
             f"Please wait {wait} seconds before requesting a new code.",
             429,
@@ -159,6 +175,7 @@ def send_code(request):
         )
 
     send_verification_email(email, code_record.code, purpose)
+    logger.info("send_code_success", extra={"email": email, "purpose": purpose, "code_id": code_record.id})
     return Response({"message": "Verification code sent."})
 
 
@@ -170,18 +187,22 @@ def change_email(request):
 
     current_email = request.user.email
     if not current_email:
+        logger.warning("change_email_missing_current", extra={"user_id": request.user.id})
         return handle_error_response("User email is not set.", 400, code="missing_email")
 
     ok, error_msg = verify_and_consume_code(current_email, "change_email", ser.validated_data["code"])
     if not ok:
+        logger.warning("change_email_invalid_code", extra={"user_id": request.user.id})
         return handle_error_response(error_msg, 400, code="invalid_code")
 
     new_email = ser.validated_data["new_email"].strip().lower()
     if User.objects.filter(email__iexact=new_email).exclude(pk=request.user.pk).exists():
+        logger.warning("change_email_exists", extra={"user_id": request.user.id, "new_email": new_email})
         return handle_error_response("Email already in use.", 400, code="email_exists")
 
     request.user.email = new_email
     request.user.save(update_fields=["email"])
+    logger.info("change_email_success", extra={"user_id": request.user.id, "new_email": new_email})
     return Response({"user": UserSerializer(request.user).data})
 
 
@@ -193,14 +214,17 @@ def change_password(request):
 
     current_email = request.user.email
     if not current_email:
+        logger.warning("change_password_missing_email", extra={"user_id": request.user.id})
         return handle_error_response("User email is not set.", 400, code="missing_email")
 
     ok, error_msg = verify_and_consume_code(current_email, "change_password", ser.validated_data["code"])
     if not ok:
+        logger.warning("change_password_invalid_code", extra={"user_id": request.user.id})
         return handle_error_response(error_msg, 400, code="invalid_code")
 
     request.user.set_password(ser.validated_data["new_password"])
     request.user.save(update_fields=["password"])
+    logger.info("change_password_success", extra={"user_id": request.user.id})
     resp = Response({"ok": True})
     clear_auth_cookies(resp)
     return resp
@@ -214,19 +238,23 @@ def reset_password(request):
     new_password = request.data.get('new_password')
 
     if not email or not code or not new_password:
+        logger.warning("reset_password_missing_fields")
         return handle_error_response("email, code and new_password are required", 400, code="missing_fields")
 
     ok, error_msg = verify_and_consume_code(email, "reset_password", code)
     if not ok:
+        logger.warning("reset_password_invalid_code", extra={"email": email})
         return handle_error_response(error_msg, 400, code="invalid_code")
 
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
+        logger.warning("reset_password_user_not_found", extra={"email": email})
         return handle_error_response("User not found", 404, code="user_not_found")
 
     user.set_password(new_password)
     user.save(update_fields=["password"])
+    logger.info("reset_password_success", extra={"user_id": user.id})
     return Response({"message": "Password reset successfully"})
 
 
@@ -238,8 +266,10 @@ def change_phone(request):
 
     new_phone = ser.validated_data.get("new_phone")
     if new_phone and User.objects.filter(phone=new_phone).exclude(pk=request.user.pk).exists():
+        logger.warning("change_phone_exists", extra={"user_id": request.user.id})
         return handle_error_response("Phone already in use.", 400, code="phone_exists")
 
     request.user.phone = new_phone
     request.user.save(update_fields=["phone"])
+    logger.info("change_phone_success", extra={"user_id": request.user.id})
     return Response({"user": UserSerializer(request.user).data})

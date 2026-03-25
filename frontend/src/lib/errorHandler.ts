@@ -1,5 +1,6 @@
 import { toast } from 'sonner';
 import { getErrorCode, extractErrorMessage } from './api';
+import { appLogger } from './logger';
 
 export async function handleApiCall<T>(
   apiCall: () => Promise<T>,
@@ -21,11 +22,13 @@ export async function handleApiCall<T>(
     const errorCode = getErrorCode(err);
     let message = extractErrorMessage(err, 'An error occurred');
     if (errorCode) {
-      const translated = t(errorCode);
-      if (translated !== errorCode) {
+      const key = `errors.${errorCode}`;
+      const translated = t(key);
+      if (translated !== key) {
         message = translated;
       }
     }
+    appLogger.warn('api.call.failed', { errorCode, message });
     toast.error(message);
     options?.onError?.(err);
     // Re‑throw if the caller needs to handle it further

@@ -1,5 +1,6 @@
 import { User } from '@/lib/types';
 import { ApiError } from '@/lib/api';
+import { appLogger } from '@/lib/logger';
 
 // Base URL for Django API – falls back to empty string (same origin) if not set
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || '';
@@ -41,6 +42,7 @@ async function handleResponse<T>(res: Response): Promise<T> {
     if (!message) message = 'Request failed';
     if (!code) code = 'request_error';
 
+    appLogger.warn('auth.api.response.failed', { status: res.status, message, code });
     throw new ApiError(res.status, errorData, message, code);
   }
   return res.json();
@@ -48,6 +50,7 @@ async function handleResponse<T>(res: Response): Promise<T> {
 
 export const authApi = {
   me: async (): Promise<User> => {
+    appLogger.debug('auth.api.me.start');
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.me), {
       credentials: 'include',
     });
@@ -56,6 +59,7 @@ export const authApi = {
   },
 
   signIn: async (input: { email: string; password: string }) => {
+    appLogger.info('auth.api.sign_in.start', { email: input.email });
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.signIn), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -74,6 +78,7 @@ export const authApi = {
     code: string;
     phone?: string;
   }) => {
+    appLogger.info('auth.api.sign_up.start', { email: input.email });
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.signUp), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -85,6 +90,7 @@ export const authApi = {
   },
 
   signOut: async () => {
+    appLogger.info('auth.api.sign_out.start');
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.signOut), {
       method: 'POST',
       credentials: 'include',
@@ -93,6 +99,7 @@ export const authApi = {
   },
 
   refresh: async () => {
+    appLogger.debug('auth.api.refresh.start');
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.refresh), {
       method: 'POST',
       credentials: 'include',
@@ -101,6 +108,7 @@ export const authApi = {
   },
 
   updateProfile: async (input: { first_name?: string; last_name?: string }) => {
+    appLogger.info('auth.api.profile.update.start', { fields: Object.keys(input).join(',') });
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.profile), {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -112,6 +120,7 @@ export const authApi = {
   },
 
   changeEmail: async (input: { new_email: string; code: string }) => {
+    appLogger.info('auth.api.change_email.start', { new_email: input.new_email });
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.changeEmail), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -123,6 +132,7 @@ export const authApi = {
   },
 
   changePhone: async (input: { new_phone: string }) => {
+    appLogger.info('auth.api.change_phone.start');
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.changePhone), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -134,6 +144,7 @@ export const authApi = {
   },
 
   changePassword: async (input: { new_password: string; code: string }) => {
+    appLogger.info('auth.api.change_password.start');
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.changePassword), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -144,6 +155,7 @@ export const authApi = {
   },
 
   resetPassword: async (input: { new_password: string; code: string; email: string }) => {
+    appLogger.info('auth.api.reset_password.start', { email: input.email });
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.resetPassword), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -153,6 +165,7 @@ export const authApi = {
   },
 
   sendCode: async (input: { email: string; purpose: string }) => {
+    appLogger.info('auth.api.send_code.start', { email: input.email, purpose: input.purpose });
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.sendCode), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -163,6 +176,7 @@ export const authApi = {
   },
 
   resendCode: async (input: { email: string; purpose: string }) => {
+    appLogger.info('auth.api.resend_code.start', { email: input.email, purpose: input.purpose });
     const res = await fetch(apiUrl(AUTH_ENDPOINTS.resendCode), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

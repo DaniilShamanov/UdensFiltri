@@ -562,6 +562,8 @@
     "not_found": "Resource not found.",
     "unauthenticated": "Please sign in to continue.",
     "validation_error": "Please check your input and try again.",
-    "stripe_error": "Payment service error. Please try again later."
+    "stripe_error": "Payment service error. Please try again later.",
+    "invalid_credentials": "Invalid email or password.",
+    "request_error": "Request failed. Please try again."
   }
 }

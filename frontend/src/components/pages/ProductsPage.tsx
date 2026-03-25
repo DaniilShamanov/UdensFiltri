@@ -49,6 +49,8 @@ function ProductsContent() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('featured');
   const [range, setRange] = useState({ min: 0, max: MAX_PRICE });
+  const [minPriceInput, setMinPriceInput] = useState('');
+  const [maxPriceInput, setMaxPriceInput] = useState(String(MAX_PRICE));
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [inStockOnly, setInStockOnly] = useState(false);
 
@@ -167,6 +169,8 @@ function ProductsContent() {
 
   const resetFilters = () => {
     setRange({ min: 0, max: MAX_PRICE });
+    setMinPriceInput('');
+    setMaxPriceInput(String(MAX_PRICE));
     setSelectedBrands([]);
     setInStockOnly(false);
     setSearchQuery('');
@@ -182,51 +186,83 @@ function ProductsContent() {
   const currentCategory = categories.find(c => c.id === categoryId);
   const currentSubCategory = currentCategory?.subCategories?.find(s => s.id === subCategoryId);
 
+  // Helper to strip non‑digits and limit to 4 digits
+  const normalizePriceInput = (value: string): string => value.replace(/\D/g, '').slice(0, 4);
+
   const setMinPrice = (value: string) => {
-    const parsed = Number(value);
-    setRange(prev => ({
-      ...prev,
-      min: isNaN(parsed) ? 0 : Math.max(0, Math.min(parsed, prev.max)),
-    }));
+    const normalized = normalizePriceInput(value);
+    setMinPriceInput(normalized);
+    if (normalized === '') {
+      setRange(prev => ({ ...prev, min: 0 }));
+      return;
+    }
+    let parsed = Number(normalized);
+    if (isNaN(parsed)) return;
+    // Clamp to 0..max
+    parsed = Math.max(0, Math.min(parsed, range.max));
+    setRange(prev => ({ ...prev, min: parsed }));
   };
 
   const setMaxPrice = (value: string) => {
-    const parsed = Number(value);
-    setRange(prev => ({
-      ...prev,
-      max: isNaN(parsed) ? prev.max : Math.min(MAX_PRICE, Math.max(parsed, prev.min)),
-    }));
+    const normalized = normalizePriceInput(value);
+    setMaxPriceInput(normalized);
+    if (normalized === '') {
+      setRange(prev => ({ ...prev, max: MAX_PRICE }));
+      return;
+    }
+    let parsed = Number(normalized);
+    if (isNaN(parsed)) return;
+    // Clamp to min..MAX_PRICE
+    parsed = Math.min(MAX_PRICE, Math.max(parsed, range.min));
+    setRange(prev => ({ ...prev, max: parsed }));
   };
+
+  // Sync input strings with range values when range changes (e.g., via reset or other logic)
+  useEffect(() => {
+    if (range.min === 0 && minPriceInput !== '') {
+      setMinPriceInput('');
+    } else if (range.min !== 0 && minPriceInput !== range.min.toString()) {
+      setMinPriceInput(range.min.toString());
+    }
+  }, [range.min, minPriceInput]);
+
+  useEffect(() => {
+    if (range.max === MAX_PRICE && maxPriceInput !== String(MAX_PRICE)) {
+      setMaxPriceInput(String(MAX_PRICE));
+    } else if (range.max !== MAX_PRICE && maxPriceInput !== range.max.toString()) {
+      setMaxPriceInput(range.max.toString());
+    }
+  }, [range.max, maxPriceInput]);
 
   const totalPages = Math.ceil(totalProducts / pageSize);
 
-  const FilterSection = () => (
+  const renderFilterSection = () => (
     <div className="space-y-6">
       {/* Price Range */}
-      <div className="space-y-2 scrollbar-hide">
+      <form onSubmit={(e) => e.preventDefault()} className="space-y-3 scrollbar-hide">
         <Label className="font-semibold">{t('filters.priceRange')} (€)</Label>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 px-0.5">
           <Input
-            type="number"
-            min={0}
-            max={MAX_PRICE}
-            value={range.min}
+            type="text"
+            inputMode="numeric"
+            value={minPriceInput}
             onChange={e => setMinPrice(e.target.value)}
-            placeholder="Min €"
-            className="flex-1"
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+            placeholder="Min"
+            className="flex-1 ml-0.5"
           />
           <span className="text-muted-foreground">–</span>
           <Input
-            type="number"
-            min={0}
-            max={MAX_PRICE}
-            value={range.max}
+            type="text"
+            inputMode="numeric"
+            value={maxPriceInput}
             onChange={e => setMaxPrice(e.target.value)}
-            placeholder="Max €"
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+            placeholder="Max"
             className="flex-1"
           />
         </div>
-      </div>
+      </form>
 
       {/* Brands – from full list */}
       {brandsList.length > 0 && (
@@ -285,7 +321,7 @@ function ProductsContent() {
     </div>
   );
 
-  // Show spinner while loading and no products (initial load or after filter that clears list)
+  // Show spinner while loading and no products
   if (loading && products.length === 0) {
     return (
       <div className="container mx-auto px-4 py-16 flex justify-center">
@@ -334,7 +370,8 @@ function ProductsContent() {
               ? currentCategory.name
               : t('allProducts')}
           </h1>
-          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+          <div className="flex flex-col gap-4">
+            {/* Search bar */}
             <div className="relative flex-1 w-full md:max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
@@ -344,38 +381,40 @@ function ProductsContent() {
                 className="pl-10"
               />
             </div>
-            <div className="flex gap-2 w-full md:w-auto">
-              {/* Mobile Filter Button */}
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="outline" className="md:hidden flex-1 cursor-pointer">
-                    <SlidersHorizontal className="h-4 w-4 mr-2" />
-                    {t('filtersButton')}
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-[300px] p-0">
-                  <SheetHeader>
-                    <SheetTitle>{t('filtersTitle')}</SheetTitle>
-                  </SheetHeader>
-                  <ScrollArea className="h-[calc(100vh-8rem)] mt-4">
-                    <div className="border-y px-4 py-4">
-                      <FilterSection />
-                    </div>
-                  </ScrollArea>
-                </SheetContent>
-              </Sheet>
 
-              {/* Sort */}
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-                <p className="text-muted-foreground order-2 md:order-1">
-                  {t('showingCount', { count: totalProducts })}
-                </p>
-                <div className="flex items-center gap-2 order-1 md:order-2">
+            {/* Row: showing count + controls */}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm text-muted-foreground">
+                {t('showingCount', { count: totalProducts })}
+              </p>
+              <div className="flex gap-2">
+                {/* Mobile Filter Button */}
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" className="md:hidden cursor-pointer">
+                      <SlidersHorizontal className="h-4 w-4 mr-2" />
+                      {t('filtersButton')}
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-[300px] p-0">
+                    <SheetHeader>
+                      <SheetTitle>{t('filtersTitle')}</SheetTitle>
+                    </SheetHeader>
+                    <ScrollArea className="h-[calc(100vh-8rem)] mt-4">
+                      <div className="border-y px-4 py-4">
+                        {renderFilterSection()}
+                      </div>
+                    </ScrollArea>
+                  </SheetContent>
+                </Sheet>
+
+                {/* Sort dropdown */}
+                <div className="flex items-center gap-2">
                   <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">
                     {t('sort.placeholder')}
                   </span>
                   <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-full cursor-pointer md:w-[200px]" />
+                    <SelectTrigger className="w-[180px] cursor-pointer" />
                     <SelectContent>
                       <SelectItem value="featured">{t('sort.featured')}</SelectItem>
                       <SelectItem value="price-low">{t('sort.priceLowHigh')}</SelectItem>
@@ -397,7 +436,7 @@ function ProductsContent() {
               <CardContent className="p-6">
                 <h2 className="font-semibold text-lg mb-4">{t('filtersTitle')}</h2>
                 <ScrollArea className="h-[calc(100vh-16rem)] pr-4">
-                  <FilterSection />
+                  {renderFilterSection()}
                 </ScrollArea>
               </CardContent>
             </Card>

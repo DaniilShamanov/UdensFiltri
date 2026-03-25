@@ -1,3 +1,5 @@
+import { appLogger } from "@/lib/logger";
+
 export class ApiError extends Error {
   status: number;
   data: unknown;
@@ -34,6 +36,12 @@ export function getErrorCode(error: unknown): string | undefined {
 function normalizeApiMessage(message: string): string {
   const trimmed = message.trim();
   if (!trimmed) return trimmed;
+
+  // Ignore i18n key-like payloads such as "signIn.errors.validation_error";
+  // callers can use error code translation fallback instead.
+  if (/^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+$/i.test(trimmed)) {
+    return '';
+  }
 
   // Convert patterns like "invalid_code Invalid or expired code" or
   // "invalid_code: Invalid or expired code" into a clean user-facing message.
@@ -85,8 +93,10 @@ export function extractErrorMessage(error: unknown, defaultMessage: string): str
       collectMessages(data);
       
       // Return specific messages first, fall back to generic if needed
-      if (messages.length > 0) return messages.map(normalizeApiMessage).join(' ');
-      if (genericMessages.length > 0) return genericMessages.map(normalizeApiMessage).join(' ');
+      const normalizedMessages = messages.map(normalizeApiMessage).filter(Boolean);
+      const normalizedGenericMessages = genericMessages.map(normalizeApiMessage).filter(Boolean);
+      if (normalizedMessages.length > 0) return normalizedMessages.join(' ');
+      if (normalizedGenericMessages.length > 0) return normalizedGenericMessages.join(' ');
     }
     // Fall back to error message
     if (error.message && !error.message.includes('Request failed')) return normalizeApiMessage(error.message);
@@ -138,6 +148,14 @@ export async function fetchJson<T>(
     if (token) headers['X-CSRFToken'] = token;
   }
 
+  appLogger.debug("api.request.start", {
+    url,
+    method: opts.method ?? "GET",
+    csrf: Boolean(opts.csrf),
+    retryOn401: opts.retryOn401 !== false,
+    isRetry: _isRetry,
+  });
+
   let res = await fetch(url, {
     method: opts.method ?? 'GET',
     headers,
@@ -159,6 +177,7 @@ export async function fetchJson<T>(
       });
 
       if (refreshRes.ok) {
+        appLogger.info("api.auth.refresh.success", { url });
         // Retry the original request with a flag to prevent infinite loops.
         // If the retry itself throws, propagate that error directly — the refresh
         // succeeded so it's a different issue, not an auth expiry.
@@ -169,6 +188,7 @@ export async function fetchJson<T>(
           throw retryError;
         }
       } else {
+        appLogger.warn("api.auth.refresh.failed", { url, status: refreshRes.status });
         if (typeof window !== 'undefined') {
           window.dispatchEvent(new CustomEvent('app:auth-expired'));
         }
@@ -182,6 +202,10 @@ export async function fetchJson<T>(
       // For network errors reaching the refresh endpoint, try original request anyway
       // Only dispatch auth-expired if fetch failed (not just server error)
       if (error instanceof TypeError) {
+        appLogger.error("api.auth.refresh.network_error", {
+          url,
+          message: error.message,
+        });
         if (typeof window !== 'undefined') {
           window.dispatchEvent(new CustomEvent('app:auth-expired'));
         }
@@ -197,6 +221,11 @@ export async function fetchJson<T>(
   const data = isJson ? await res.json().catch(() => null) : await res.text().catch(() => null);
 
   if (!res.ok) {
+    appLogger.warn("api.request.failed", {
+      url,
+      status: res.status,
+      method: opts.method ?? "GET",
+    });
     // Keep client console clean for expected validation failures (4xx),
     // but still log unexpected server errors in the browser.
     if (typeof window !== "undefined" && res.status >= 500) {
@@ -213,5 +242,10 @@ export async function fetchJson<T>(
     throw new ApiError(res.status, data, `Request failed: ${res.status}`);
   }
 
+  appLogger.debug("api.request.success", {
+    url,
+    status: res.status,
+    method: opts.method ?? "GET",
+  });
   return data as T;
 }

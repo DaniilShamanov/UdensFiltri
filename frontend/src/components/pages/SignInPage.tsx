@@ -2,7 +2,7 @@
 
 import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Lock, Phone, LogIn, Mail } from "lucide-react";
+import { Lock, LogIn, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { useApp } from "@/contexts/AppContext";
 import { useTranslations } from "next-intl";
 import { sanitizeNextPath } from "@/lib/safeRedirect";
-import { extractErrorMessage, ApiError } from "@/lib/api";
+import { extractErrorMessage, getErrorCode } from "@/lib/api";
 
 function SignInContent() {
   const { signIn } = useApp();
@@ -23,6 +23,7 @@ function SignInContent() {
   const [loading, setLoading] = useState(false);
 
   const t = useTranslations('signIn');
+  const tErrors = useTranslations('errors');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +34,11 @@ function SignInContent() {
       const next = sanitizeNextPath(searchParams.get("next"), "/");
       router.replace(next);
     } catch (err: any) {
-      const errorMessage = extractErrorMessage(err, t('toast.errorDescription'));
+      const errorCode = getErrorCode(err);
+      let errorMessage = extractErrorMessage(err, t('toast.errorDescription'));
+      if (errorCode && tErrors.has(errorCode)) {
+        errorMessage = tErrors(errorCode);
+      }
       toast.error(t('toast.error'), {
         description: errorMessage,
       });

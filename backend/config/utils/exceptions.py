@@ -1,5 +1,10 @@
+import logging
+
 from rest_framework.views import exception_handler
 from rest_framework.response import Response
+
+logger = logging.getLogger("udensfiltri.api")
+
 
 def custom_exception_handler(exc, context):
     response = exception_handler(exc, context)
@@ -42,6 +47,18 @@ def custom_exception_handler(exc, context):
             code = 'validation_error'
 
         # Return the new response format
+        request = context.get("request")
+        logger.warning(
+            "api_exception_handled",
+            extra={
+                "request_id": getattr(request, "request_id", None),
+                "method": getattr(request, "method", None),
+                "path": getattr(request, "path", None),
+                "status_code": response.status_code,
+                "error_code": code,
+            },
+        )
+
         return Response({"message": message, "code": code}, status=response.status_code)
 
     return response

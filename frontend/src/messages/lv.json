@@ -562,6 +562,8 @@
     "not_found": "Resurss nav atrasts.",
     "unauthenticated": "Lūdzu, pierakstieties, lai turpinātu.",
     "validation_error": "Lūdzu, pārbaudiet ievadītos datus un mēģiniet vēlreiz.",
-    "stripe_error": "Maksājumu pakalpojuma kļūda. Lūdzu, mēģiniet vēlāk."
+    "stripe_error": "Maksājumu pakalpojuma kļūda. Lūdzu, mēģiniet vēlāk.",
+    "invalid_credentials": "Nepareizs e-pasts vai parole.",
+    "request_error": "Pieprasījums neizdevās. Lūdzu, mēģiniet vēlreiz."
   }
 }

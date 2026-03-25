@@ -53,12 +53,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, showWholesalePrice }
           </div>
           <div className="p-4 flex-1 flex flex-col">
             <div className="text-sm text-muted-foreground mb-1 line-clamp-1">{product.brand}</div>
-            <h3 className="font-semibold mb-2 line-clamp-2 h-12 group-hover:text-primary transition-colors">
+            <h3 className="font-semibold mb-2 line-clamp-2 min-h-12 group-hover:text-primary transition-colors break-words overflow-hidden">
               {product.name}
             </h3>
 
             {/* Price and Quantity row */}
-            <div className="flex items-center justify-between gap-2 mt-auto pt-2">
+            <div className="flex items-center justify-between gap-2 mt-auto pt-2 flex-wrap">
               {/* Price on left */}
               <div className="text-left">
                 <span className="text-xl font-bold text-primary">
@@ -97,7 +97,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, showWholesalePrice }
                   }}
                   onChange={(e) => {
                     const val = e.target.value;
-                    // Allow up to three digits
                     if (val === '' || /^\d{0,3}$/.test(val)) {
                       const num = val === '' ? 1 : parseInt(val, 10);
                       if (!isNaN(num)) handleQuantityChange(num);

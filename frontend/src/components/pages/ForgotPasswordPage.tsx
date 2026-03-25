@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
       });
     } catch (err: any) {
       const errorCode = getErrorCode(err);
-      let message = t("toast.codeErrorDescription");
+      let message = extractErrorMessage(err, t("toast.codeErrorDescription"));
       if (errorCode && tErrors.has(errorCode)) {
         message = tErrors(errorCode);
       }
@@ -61,7 +61,7 @@ export default function ForgotPasswordPage() {
       router.push("/auth/sign-in");
     } catch (err: any) {
       const errorCode = getErrorCode(err);
-      let message = t("toast.resetErrorDescription");
+      let message = extractErrorMessage(err, t("toast.resetErrorDescription"));
       if (errorCode && tErrors.has(errorCode)) {
         message = tErrors(errorCode);
       }

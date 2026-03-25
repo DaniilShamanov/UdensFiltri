@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { CartItem, Order, Product, User } from "@/lib/types";
 import { authApi } from "@/lib/auth/api";
 import { ApiError } from "@/lib/api";
+import { appLogger } from "@/lib/logger";
 
 interface AppContextType {
   user: User | null;
@@ -66,6 +67,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         const me = await authApi.me();
         if (!cancelled) setUser(me);
       } catch {
+        appLogger.warn("app.auth.bootstrap_failed");
         if (!cancelled) {
           setUser(null);
           if (localStorage.getItem(AUTH_SEEN_KEY) === "1") {
@@ -89,6 +91,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   useEffect(() => {
     const onAuthExpired = () => {
+      appLogger.warn("app.auth.expired");
       setUser(null);
       setAuthNotice("notification.signedOut");
     };
@@ -153,6 +156,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setUser(me);
       setAuthNotice(null);
       localStorage.setItem(AUTH_SEEN_KEY, "1");
+      appLogger.info("app.auth.sign_in_success", { userId: me.id });
     } finally {
       setAuthLoading(false);
     }
@@ -165,6 +169,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const me = await authApi.me();
       setUser(me);
       localStorage.setItem(AUTH_SEEN_KEY, "1");
+      appLogger.info("app.auth.sign_up_success", { userId: me.id });
     } finally {
       setAuthLoading(false);
     }
@@ -178,7 +183,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       // Silently ignore auth errors during sign-out — if the token is already expired
       // the session is effectively terminated. Log unexpected errors only.
       if (!(error instanceof ApiError && error.status === 401)) {
-        console.error('Unexpected error during sign out:', error);
+        appLogger.error('app.auth.sign_out_unexpected_error', { error });
       }
     } finally {
       localStorage.removeItem(AUTH_SEEN_KEY);
@@ -192,8 +197,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       await authApi.refresh();
       const me = await authApi.me();
       setUser(me);
+      appLogger.info("app.auth.refresh_success", { userId: me.id });
     } catch {
       setUser(null);
+      appLogger.warn("app.auth.refresh_failed");
     }
   };
 
